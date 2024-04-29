@@ -79,7 +79,7 @@ function filtrarEstado(){
     var name = document.getElementById("ong-name-search").value = "";
     var tag = document.getElementById("state-localization");
     var stateId = tag.value;
-    
+    setDefaultCauses();
     if(stateId == 0){
         $.ajax({
             type: "GET",
@@ -107,7 +107,7 @@ function filtrarCausa(){
     var name = document.getElementById("ong-name-search").value = "";
     var tag = document.getElementById("ngo-cause");
     var causeId = tag.value;
-    
+    setDefaultState();
     if(causeId == 0){
         $.ajax({
             type: "GET",
@@ -133,6 +133,8 @@ function filtrarNome(){
     var limpo = document.getElementById("container-ongs");
     limpo.innerText = ""
     var name = document.getElementById("ong-name-search").value;
+    setDefaultCauses();
+    setDefaultState();
     if(name == ""){
         $.ajax({
             type: "GET",
@@ -158,7 +160,7 @@ function logout(){
 }
 
 function mostraOng(item) {
-    
+    temElemento();
     if(item == ""){
         semElemento();
     }else{
@@ -180,6 +182,16 @@ function mostraOng(item) {
     });
     }
     
+}
+
+function setDefaultCauses(){
+    var tag = document.getElementById('ngo-cause');
+    tag.selectedIndex = 0;
+}
+
+function setDefaultState(){
+    var tag = document.getElementById('state-localization');
+    tag.selectedIndex = 0;
 }
 
 function temElemento(){
