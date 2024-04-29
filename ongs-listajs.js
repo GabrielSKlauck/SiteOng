@@ -79,7 +79,7 @@ function filtrarEstado(){
     var name = document.getElementById("ong-name-search").value = "";
     var tag = document.getElementById("state-localization");
     var stateId = tag.value;
-    console.log(stateId);
+    
     if(stateId == 0){
         $.ajax({
             type: "GET",
@@ -107,6 +107,7 @@ function filtrarCausa(){
     var name = document.getElementById("ong-name-search").value = "";
     var tag = document.getElementById("ngo-cause");
     var causeId = tag.value;
+    
     if(causeId == 0){
         $.ajax({
             type: "GET",
@@ -158,7 +159,11 @@ function logout(){
 
 function mostraOng(item) {
     
-    item.forEach(linha => {
+    if(item == ""){
+        semElemento();
+    }else{
+        temElemento();
+        item.forEach(linha => {
             const cardOng = `
             <div id="${linha.id}" class="cards-ong md:mt-10 mt:ml-6 w-[20rem] h-20 rounded-3xl ml-10 mb-3" onclick="abrirPagina(${linha.id})">
             <h1 class="text-center mt-2">${linha.ngoName}</h1> <!-- Jomhura-->
@@ -173,6 +178,18 @@ function mostraOng(item) {
         $(`#container-ongs`).append($(cardOng));
         
     });
+    }
+    
+}
+
+function temElemento(){
+    var tag = document.getElementById('aviso-sem-ongs');
+    tag.style.display = 'none'; 
+}
+
+function semElemento(){
+    var tag = document.getElementById('aviso-sem-ongs');
+    tag.style.display = 'block';
 }
 
 function getCauseName(id){
